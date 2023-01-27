@@ -12,7 +12,8 @@ Your improved accuracy: 0.6888888888888889
 ```
 ## Naive Bayes Classifier
 Parameter estimation\
-Smoothing using add-one (Laplace)
+How to deal with a word in a review was not present in the training dataset?\ 
+Ignore its contribution or using add-one (Laplace) Smoothing 
 ```
 Your accuracy using simple classifier: 0.63
 Your accuracy using unsmoothed probabilities: 0.49
