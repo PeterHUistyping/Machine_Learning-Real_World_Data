@@ -1,0 +1,10 @@
+best: positive
+well: positive
+satisfying: positive
+bland: negative
+lacking: negative
+ironic: negative
+escapist: positive
+fun: positive
+like: positive
+gory: negative

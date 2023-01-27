@@ -1,0 +1,10 @@
+best: positive
+satisfying: positive
+interesting:positive
+nice:positive
+unfortunately:negative
+worst:negative
+bland:negative
+lacking:negative
+annoying:negative
+ironic:negative
