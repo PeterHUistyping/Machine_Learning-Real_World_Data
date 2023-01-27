@@ -12,4 +12,6 @@ Smoothing using add-one (Laplace)
 
 ## Zipf’s Law and Heaps’ Law
 Zipf’s law says that there is a reverse exponential relationship between the frequency of a word (fw) in a large natural language text, and its relative frequency rank (rw; the ranking of its frequency in comparison with other words’ frequencies) \
+![Zipf](mlrd/figures/sentiment_detection/Estimation%20of%20log-log.png)
 Heaps’ law relates the number of distinct words in a text to the overall number of words in the text.
+![Heaps](mlrd/figures/sentiment_detection/Numbers%20of%20Words.png)
