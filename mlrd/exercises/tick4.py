@@ -1,3 +1,4 @@
+import math
 import os
 from typing import List, Dict, Tuple
 from exercises.tick1 import accuracy, predict_sentiment, read_lexicon
@@ -24,7 +25,7 @@ def read_lexicon_magnitude(filename: str) -> Dict[str, Tuple[int, str]]:
             if each_item[2][index2:] == "negative":
                 dictionary[each_item[0][index1:]] = (-1, each_item[1][index3:])
             else:
-                dictionary[each_item[0][index1:]] = (-1, each_item[1][index3:])
+                dictionary[each_item[0][index1:]] = (1, each_item[1][index3:])
     return dictionary
 
 
@@ -39,8 +40,24 @@ def predict_sentiment_magnitude(review: List[str], lexicon: Dict[str, Tuple[int,
     @param lexicon: dictionary from word to a tuple of sentiment (1, -1) and magnitude ('strong', 'weak').
     @return: calculated sentiment for each review (+1 or -1 for positive or negative sentiments respectively).
     """
-    pass
+    score_temp = 0
+    for each_review in review:
+        if lexicon.get(each_review):
+            if lexicon.get(each_review)[1] == 'strong':
+                score_temp += 4 * lexicon.get(each_review)[0]
+            else:
+                score_temp += lexicon.get(each_review)[0]
+        else:
+            score_temp += 0  # DEFAULT change to 0
+    if score_temp >= 10:
+        return 1
+    else:
+        return -1
 
+
+def comb(n, r):
+    return math.factorial(n) // math.factorial(r) // math.factorial(n - r)
+# / :OverflowError: integer division result too large for a float
 
 def sign_test(actual_sentiments: List[int], classification_a: List[int], classification_b: List[int]) -> float:
     """
@@ -53,7 +70,25 @@ def sign_test(actual_sentiments: List[int], classification_a: List[int], classif
     @param classification_b: list of sentiment prediction from classifier B
     @return: p-value of the two-sided sign test.
     """
-    pass
+    q = 0.5
+    res = 0
+    plus = 0
+    minus = 0  # # ab_correct
+    null = 0  # both_correct
+    for i in range(len(actual_sentiments)):
+        a_better = classification_a[i] == actual_sentiments[i]
+        b_better = classification_b[i] == actual_sentiments[i]
+        if b_better:
+            minus += 1
+        elif a_better:
+            plus += 1
+        else:  # a_better and b_better or (not(a_better) and not(b_better))
+            null += 1
+    k = math.ceil(null / 2) + min(plus, minus)   # smaller # sign
+    n = 2 * math.ceil(null / 2) + plus + minus
+    for i in range(k + 1):
+        res += comb(n, i) * math.pow(q, i) * math.pow(1 - q, n - i)
+    return 2 * res  # p-value
 
 
 def main():

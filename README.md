@@ -4,6 +4,7 @@ PyCharm
 ## Dependency
 NLTK-Natural Language Toolkit
 ## Sentiment Lexicon Database
+Given a list of tokens from a tokenized review and a lexicon containing both sentiment and magnitude of a word, determine whether the sentiment of each review in the test set is positive or negative based on whether there are more positive or negative words.\
 Classification: label Lexicons into postive and negative.\
 Evaluation: Based on reviews on IMDb. \
 Improve the classifier using thresholds for decision bounds.
@@ -27,3 +28,14 @@ Heaps’ law relates the number of distinct words in a text to the overall numbe
 ![Heaps](mlrd/figures/sentiment_detection/Numbers%20of%20Words.png)
 
 ## Statistical Significance Testing
+Modify the simple classifier to include the information about the magnitude of a sentiment.\
+A word with a strong intensity should be weighted *four* times as high for the evaluator.\
+Implement the two-sided sign test algorithm to determine if one classifier is significantly better or worse than     another. The sign for a result should be determined by which classifier is more correct and the ceiling of the least common sign total should be used to calculate the probability.
+```
+Your accuracy using simple classifier: 0.63
+Your accuracy using magnitude classifier: 0.665
+Your accuracy using Naive Bayes classifier: 0.795
+
+The p-value of the two-sided sign test for classifier_a "classifier simple" and classifier_b "classifier magnitude": 0.6722499772048186
+The p-value of the two-sided sign test for classifier_a "classifier magnitude" and classifier_b "naive bayes classifier": 0.07683763213126037
+```
