@@ -32,10 +32,6 @@ Modify the simple classifier to include the information about the magnitude of a
 A word with a strong intensity should be weighted *four* times as high for the evaluator.\
 Implement the two-sided sign test algorithm to determine if one classifier is significantly better or worse than     another. The sign for a result should be determined by which classifier is more correct and the ceiling of the least common sign total should be used to calculate the probability.
 ```
-Your accuracy using simple classifier: 0.63
-Your accuracy using magnitude classifier: 0.665
-Your accuracy using Naive Bayes classifier: 0.795
-
 The p-value of the two-sided sign test for classifier_a "classifier simple" and classifier_b "classifier magnitude": 0.6722499772048186
 The p-value of the two-sided sign test for classifier_a "classifier magnitude" and classifier_b "naive bayes classifier": 0.07683763213126037
 ```

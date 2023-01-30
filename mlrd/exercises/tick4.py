@@ -49,7 +49,7 @@ def predict_sentiment_magnitude(review: List[str], lexicon: Dict[str, Tuple[int,
                 score_temp += lexicon.get(each_review)[0]
         else:
             score_temp += 0  # DEFAULT change to 0
-    if score_temp >= 10:
+    if score_temp >= 0:
         return 1
     else:
         return -1
@@ -73,17 +73,18 @@ def sign_test(actual_sentiments: List[int], classification_a: List[int], classif
     q = 0.5
     res = 0
     plus = 0
-    minus = 0  # # ab_correct
+    minus = 0  # #  b_correct
     null = 0  # both_correct
     for i in range(len(actual_sentiments)):
         a_better = classification_a[i] == actual_sentiments[i]
         b_better = classification_b[i] == actual_sentiments[i]
-        if b_better:
-            minus += 1
-        elif a_better:
-            plus += 1
-        else:  # a_better and b_better or (not(a_better) and not(b_better))
+        if classification_a[i] == classification_b[i]:
             null += 1
+        else:
+            if a_better:
+                plus += 1
+            elif b_better:
+                minus += 1
     k = math.ceil(null / 2) + min(plus, minus)   # smaller # sign
     n = 2 * math.ceil(null / 2) + plus + minus
     for i in range(k + 1):
