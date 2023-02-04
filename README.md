@@ -38,7 +38,7 @@ The p-value of the two-sided sign test for classifier_a "classifier magnitude" a
 
 ## Cross-Validation and Evaluation Sets
 ### Training and Evaluation Sets
-1. Random: Assign the datapoints to folds randomly. \
+1. Random: Assign the datapoints to folds randomly. 
 2. Stratified random: Assign the datapoints to folds randomly but make sure that there is the same number of positive and negative reviews in each fold.
 ```
 Random cross validation accuracies: [0.8, 0.8111111111111111, 0.8444444444444444, 0.7888888888888889, 0.8222222222222222, 0.8277777777777777, 0.8222222222222222, 0.8055555555555556, 0.8333333333333334, 0.7888888888888889]
