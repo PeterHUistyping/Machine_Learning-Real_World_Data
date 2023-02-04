@@ -1,11 +1,10 @@
-import random
 from typing import List, Dict, Union
 import os
 from utils.sentiment_detection import read_tokens, load_reviews, print_binary_confusion_matrix
-from exercises.tick1 import accuracy, read_lexicon, predict_sentiment
+from exercises.tick1 import accuracy
 from exercises.tick2 import predict_sentiment_nbc, calculate_smoothed_log_probabilities, \
     calculate_class_log_probabilities
-from exercises.tick4 import sign_test
+
 
 def generate_random_cross_folds(training_data: List[Dict[str, Union[List[str], int]]], n: int = 10) \
         -> List[List[Dict[str, Union[List[str], int]]]]:
@@ -17,14 +16,7 @@ def generate_random_cross_folds(training_data: List[Dict[str, Union[List[str], i
     @param n: the number of cross-folds
     @return: a list of n folds, where each fold is a list of training instances
     """
-    Input = training_data  # only creates a reference to an object
-    random.shuffle(Input)
-    start = 0
-    res = []
-    each_len = len(Input) // n
-    for i in range(0, n):
-        res.append(Input[i * each_len:(i + 1) * each_len])
-    return res
+    pass
 
 
 def generate_stratified_cross_folds(training_data: List[Dict[str, Union[List[str], int]]], n: int = 10) \
@@ -37,20 +29,7 @@ def generate_stratified_cross_folds(training_data: List[Dict[str, Union[List[str
     @param n: the number of cross-folds
     @return: a list of n folds, where each fold is a list of training instances
     """
-    positive = []
-    negative = []
-    for review in training_data:
-        if review['sentiment'] == -1:
-            negative.append(review)
-        else:
-            positive.append(review)
-    res = []
-    random.shuffle(positive)
-    random.shuffle(negative)
-    each_len = len(training_data) // (2* n)
-    for i in range(0, n):
-        res.append(positive[i * each_len:(i + 1) * each_len]+ negative[i * each_len:(i + 1) * each_len])
-    return res
+    pass
 
 
 def cross_validate_nbc(split_training_data: List[List[Dict[str, Union[List[str], int]]]]) -> List[float]:
@@ -62,23 +41,7 @@ def cross_validate_nbc(split_training_data: List[List[Dict[str, Union[List[str],
         -1, for positive and negative sentiments.
     @return: list of accuracy scores for each fold
     """
-    accuracy_ = []
-    for i in range(len(split_training_data)):
-        # training = []
-        prediction=[]
-        training_ = split_training_data.copy()
-        training_.remove(split_training_data[i])
-        training_list=[m for item in training_ for m in item]
-        # for it in training_:
-        #     for item in it:
-        #         training+=item['text']
-        class_pr = calculate_class_log_probabilities(training_list)
-        smoothed_log_pr = calculate_smoothed_log_probabilities(training_list)
-        for r in split_training_data[i]:
-            prediction.append(predict_sentiment_nbc(r['text'], smoothed_log_pr, class_pr)) # cal outside, not need to traverse
-        accuracy_.append(accuracy(prediction, [x['sentiment'] for x in split_training_data[i]]))  # validation
-        training_list.clear()
-    return accuracy_
+    pass
 
 
 def cross_validation_accuracy(accuracies: List[float]) -> float:
@@ -87,7 +50,7 @@ def cross_validation_accuracy(accuracies: List[float]) -> float:
     @param accuracies: list of accuracy scores for n cross folds
     @returns: mean accuracy over the cross folds
     """
-    return sum(accuracies) / len(accuracies)
+    pass
 
 
 def cross_validation_variance(accuracies: List[float]) -> float:
@@ -96,12 +59,7 @@ def cross_validation_variance(accuracies: List[float]) -> float:
     @param accuracies: list of accuracy scores for n cross folds
     @returns: variance of the cross fold accuracies
     """
-    ave = cross_validation_accuracy(accuracies)
-    variance = []
-    for i in range(len(accuracies)):
-        variance.append((accuracies[i] - ave) ** 2 )
-
-    return sum(variance) / len(accuracies)
+    pass
 
 
 def confusion_matrix(predicted_sentiments: List[int], actual_sentiments: List[int]) -> List[List[int]]:
@@ -118,17 +76,7 @@ def confusion_matrix(predicted_sentiments: List[int], actual_sentiments: List[in
     @param predicted_sentiments: a list of the sentiments predicted by a system
     @returns: a confusion matrix
     """
-    matrix = [[0 for i_ in range(2)] for j_ in range(2)] # [[0] * 2] * 2
-    for i in range(len(predicted_sentiments)):
-        if predicted_sentiments[i] == 1 and actual_sentiments[i] == 1:
-            matrix[0][0] += 1
-        elif predicted_sentiments[i] == 1 and actual_sentiments[i] == -1:
-            matrix[0][1] += 1
-        elif predicted_sentiments[i] == -1 and actual_sentiments[i] == 1:
-            matrix[1][0] += 1
-        elif predicted_sentiments[i] == -1 and actual_sentiments[i] == -1:
-            matrix[1][1] += 1
-    return matrix
+    pass
 
 
 def main():
@@ -171,7 +119,7 @@ def main():
     print(f"Smoothed Naive Bayes accuracy on held-out data: {acc_smoothed}")
     print("Confusion matrix:")
     print_binary_confusion_matrix(confusion_matrix(preds_test, test_sentiments))
-    # 2016
+
     preds_recent = []
     recent_review_data = load_reviews(os.path.join('data', 'sentiment_detection', 'reviews_2016'))
     recent_tokens = [read_tokens(x['filename']) for x in recent_review_data]
@@ -185,20 +133,6 @@ def main():
     print("Confusion matrix:")
     print_binary_confusion_matrix(confusion_matrix(preds_recent, recent_sentiments))
 
-    # simple classifier performance
-    lexicon = read_lexicon('data/sentiment_detection/sentiment_lexicon')
-    # before
-    pred_sim_test = [predict_sentiment(t, lexicon) for t in test_tokens]
-    acc_sim_test = accuracy(pred_sim_test, [x['sentiment'] for x in test_data])
-    print(f"Simple Sentiment Classifier performance accuracy on held-out data: {acc_sim_test}")
-
-    # after
-    pred_sim_recent = [predict_sentiment(t, lexicon) for t in recent_tokens]
-    acc_sim_recent = accuracy(pred_sim_recent,recent_sentiments)
-    print(f"Simple Sentiment Classifier performance accuracy on 2016 data: {acc_sim_recent}")
-
-    p_v = sign_test(recent_sentiments, preds_recent, pred_sim_recent)
-    print(f"P-value of significance test between NB and Simple Classifier on 2016 data: {p_v}")
 
 if __name__ == '__main__':
     main()

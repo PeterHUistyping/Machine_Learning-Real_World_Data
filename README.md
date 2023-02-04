@@ -35,3 +35,41 @@ Implement the two-sided sign test algorithm to determine if one classifier is si
 The p-value of the two-sided sign test for classifier_a "classifier simple" and classifier_b "classifier magnitude": 0.6722499772048186
 The p-value of the two-sided sign test for classifier_a "classifier magnitude" and classifier_b "naive bayes classifier": 0.07683763213126037
 ```
+
+## Cross-Validation and Evaluation Sets
+### Training and Evaluation Sets
+1. Random: Assign the datapoints to folds randomly. \
+2. Stratified random: Assign the datapoints to folds randomly but make sure that there is the same number of positive and negative reviews in each fold.
+```
+Random cross validation accuracies: [0.8, 0.8111111111111111, 0.8444444444444444, 0.7888888888888889, 0.8222222222222222, 0.8277777777777777, 0.8222222222222222, 0.8055555555555556, 0.8333333333333334, 0.7888888888888889]
+Random cross validation mean accuracy: 0.8144444444444444
+Random cross validation variance: 0.00031604938271604933
+
+Stratified cross validation accuracies: [0.8055555555555556, 0.8388888888888889, 0.8555555555555555, 0.8666666666666667, 0.8222222222222222, 0.7611111111111111, 0.8388888888888889, 0.7944444444444444, 0.8388888888888889, 0.7944444444444444]
+Stratified cross validation mean accuracy: 0.8216666666666667
+Stratified cross validation variance: 0.0009472222222222234
+
+Smoothed Naive Bayes accuracy on held-out data: 0.84
+Confusion matrix:
+             ACTUAL
+          | pos | neg |
+     -----+-----+-----+
+      pos |  92 |  24 |
+PRED -----+-----+-----+
+      neg |   8 |  76 |
+     -----+-----+-----+
+
+Smoothed Naive Bayes accuracy on 2016 data: 0.8333333333333334
+Confusion matrix:
+             ACTUAL
+          | pos | neg |
+     -----+-----+-----+
+      pos |   8 |   0 |
+PRED -----+-----+-----+
+      neg |   4 |  12 |
+     -----+-----+-----+
+
+Simple Sentiment Classifier performance accuracy on held-out data: 0.615
+Simple Sentiment Classifier performance accuracy on 2016 data: 0.7916666666666666
+P-value of significance test between NB and Simple Classifier on 2016 data: 1.0
+```
