@@ -73,3 +73,32 @@ Simple Sentiment Classifier performance accuracy on held-out data: 0.615
 Simple Sentiment Classifier performance accuracy on 2016 data: 0.7916666666666666
 P-value of significance test between NB and Simple Classifier on 2016 data: 1.0
 ```
+## Nuanced Classifier
+Agreement table; Calculate Fleiss’ kappa
+```
+Your accuracy on the nuanced dataset: 0.5926851851851852
+
+Agreement table for this year.
+                   REVIEW
+          |  1  |  2  |  3  |  4  |
+     -----+-----+-----+-----+-----+
+      pos |  63 |   6 |   2 | 102 |
+SENT -----+-----+-----+-----+-----+
+      neg |  42 |  99 | 103 |   3 |
+     -----+-----+-----+-----+-----+
+    
+The cohen kappa score for the review predictions is 0.6454024550722497.
+The cohen kappa score for the review predictions of review 1 and 2 is 0.3275457197751368.
+The cohen kappa score for the review predictions of review 3 and 4 is 0.906218599977671.
+
+Agreement table for the years 2019 to 2022.
+                   REVIEW
+          |  1  |  2  |  3  |  4  |
+     -----+-----+-----+-----+-----+
+      pos | 309 |  30 |   8 | 454 |
+SENT -----+-----+-----+-----+-----+
+      neg | 163 | 442 | 464 |  18 |
+     -----+-----+-----+-----+-----+
+    
+The cohen kappa score for the review predictions from 2019 to 2022 is 0.6523603977342954.
+```
