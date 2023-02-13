@@ -102,3 +102,5 @@ SENT -----+-----+-----+-----+-----+
     
 The cohen kappa score for the review predictions from 2019 to 2022 is 0.6523603977342954.
 ```
+## Hidden Markov Models (HMM)
+Two matrices for the HMM: transition matrix (A) and emission matrix (B).

@@ -10,10 +10,34 @@ def get_transition_probs(hidden_sequences: List[List[str]]) -> Dict[Tuple[str, s
     @param hidden_sequences: A list of dice type sequences
     @return: A dictionary from a (hidden_state, hidden_state) tuple to a probability.
     """
-    pass
+    states = ['F', 'W', 'B', 'Z']
+    dic = {}
+    for state1 in states:
+        for state2 in states:
+            state_tuple = (state1, state2)
+            if state1 == 'B' and state2 == 'Z':
+                dic[state_tuple] = 0
+            elif state1 == 'Z':
+                dic[state_tuple] = 0
+            elif state2 == 'B':
+                dic[state_tuple] = 0
+            else:
+                numerator = 0
+                denominator = 0
+                for sequence in hidden_sequences:
+                    previous = None  # for each sequence of FW, reset previous as None
+                    for s in sequence:
+                        if s == state2 and previous == state1:  # F->W
+                            numerator += 1
+                        if s == state1:  # F->
+                            denominator += 1
+                        previous = s
+                dic[state_tuple] = numerator / denominator
+    return dic
 
 
-def get_emission_probs(hidden_sequences: List[List[str]], observed_sequences: List[List[str]]) -> Dict[Tuple[str, str], float]:
+def get_emission_probs(hidden_sequences: List[List[str]], observed_sequences: List[List[str]]) -> Dict[
+    Tuple[str, str], float]:
     """
     Calculate the emission probabilities from hidden dice states to observed dice rolls, using maximum likelihood estimation. Counts the number of times each dice roll appears for the given state (fair or loaded) and divides it by the count of that state. The table must include proability values for all state-observation pairs, even if they are zero.
 
@@ -21,7 +45,22 @@ def get_emission_probs(hidden_sequences: List[List[str]], observed_sequences: Li
     @param observed_sequences: A list of dice roll sequences
     @return: A dictionary from a (hidden_state, observed_state) tuple to a probability.
     """
-    pass
+    observations = ['1', '2', '3', '4', '5', '6', 'B', 'Z']
+    states = ['F', 'W', 'B', 'Z']
+    dic = {}
+    for state1 in states:
+        for observation2 in observations:
+            info_tuple = (state1, observation2)
+            numerator = 0
+            denominator = 0
+            for (s_singleseq, o_singleseq) in zip(hidden_sequences, observed_sequences):
+                for (s, o) in zip(s_singleseq, o_singleseq):
+                    if s == state1 and o == observation2:
+                        numerator += 1
+                    if s == state1:
+                        denominator += 1
+            dic[info_tuple] = numerator / denominator
+    return dic
 
 
 def estimate_hmm(training_data: List[Dict[str, List[str]]]) -> List[Dict[Tuple[str, str], float]]:
@@ -50,6 +89,7 @@ def main():
     print_matrices(transition_probs)
     print(f"The emission probabilities of the HMM:")
     print_matrices(emission_probs)
+
 
 if __name__ == '__main__':
     main()
