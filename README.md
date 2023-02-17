@@ -103,4 +103,17 @@ SENT -----+-----+-----+-----+-----+
 The cohen kappa score for the review predictions from 2019 to 2022 is 0.6523603977342954.
 ```
 ## Hidden Markov Models (HMM)
-Two matrices for the HMM: transition matrix (A) and emission matrix (B).
+Two matrices for the HMM: transition matrix (A) and emission matrix (B). <br/>
+Viterbi Algorithm, DP <br/>
+Evaluation:  based on True positives, false negatives, calculating precision, recall and F-measure.<br/>
+```
+Evaluating HMM on a single training and dev split using random seed 2.
+Your precision for seed 2 using the HMM: 0.8511388910192499
+Your recall for seed 2 using the HMM: 0.8821238375327876
+Your F1 for seed 2 using the HMM: 0.8663544106167057
+
+Evaluating HMM using cross-validation with 10 folds.
+ Your cv average precision using the HMM: 0.8535544962903984
+ Your cv average recall using the HMM: 0.862581124603298
+ Your cv average F1 using the HMM: 0.857999645624201
+```
