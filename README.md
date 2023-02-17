@@ -1,8 +1,11 @@
 # Machine Learning and Real World data
-https://www.cl.cam.ac.uk/teaching/2122/MLRD/ \
-PyCharm
+https://www.cl.cam.ac.uk/teaching/2122/MLRD/  
+* Sentiment Classification (NLP)
+* Hidden States Prediction (Hidden Markov Model)
+
 ## Dependency
 NLTK-Natural Language Toolkit
+IDE: PyCharm
 ## Sentiment Lexicon Database
 Given a list of tokens from a tokenized review and a lexicon containing both sentiment and magnitude of a word, determine whether the sentiment of each review in the test set is positive or negative based on whether there are more positive or negative words.\
 Classification: label Lexicons into postive and negative.\
@@ -103,17 +106,4 @@ SENT -----+-----+-----+-----+-----+
 The cohen kappa score for the review predictions from 2019 to 2022 is 0.6523603977342954.
 ```
 ## Hidden Markov Models (HMM)
-Two matrices for the HMM: transition matrix (A) and emission matrix (B). <br/>
-Viterbi Algorithm, DP <br/>
-Evaluation:  based on True positives, false negatives, calculating precision, recall and F-measure.<br/>
-```
-Evaluating HMM on a single training and dev split using random seed 2.
-Your precision for seed 2 using the HMM: 0.8511388910192499
-Your recall for seed 2 using the HMM: 0.8821238375327876
-Your F1 for seed 2 using the HMM: 0.8663544106167057
-
-Evaluating HMM using cross-validation with 10 folds.
- Your cv average precision using the HMM: 0.8535544962903984
- Your cv average recall using the HMM: 0.862581124603298
- Your cv average F1 using the HMM: 0.857999645624201
-```
+Two matrices for the HMM: transition matrix (A) and emission matrix (B).
