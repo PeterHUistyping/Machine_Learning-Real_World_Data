@@ -1,5 +1,5 @@
 # Machine Learning and Real World data
-https://www.cl.cam.ac.uk/teaching/2122/MLRD/ \
+https://www.cl.cam.ac.uk/teaching/2122/MLRD/  
 * Sentiment Classification (NLP)
 * Hidden States Prediction (Hidden Markov Model)
 PyCharm
