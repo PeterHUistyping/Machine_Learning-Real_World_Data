@@ -106,4 +106,12 @@ SENT -----+-----+-----+-----+-----+
 The cohen kappa score for the review predictions from 2019 to 2022 is 0.6523603977342954.
 ```
 ## Hidden Markov Models (HMM)
-Two matrices for the HMM: transition matrix (A) and emission matrix (B).
+Two matrices for the HMM: transition matrix (A) and emission matrix (B). <br/>
+Viterbi Algorithm: DP  <br/>
+Evaluation: precision, recall and F-measure  <br/>
+Semi-Supervised Learning with Self-Training <br/>
+0. Train an HMM model with the available labelled training data as done in the first part of the task.
+1. Use the trained model to predict the hidden sequences of all available unlabelled data.
+2. Merge the labelled data with the new pseudo-labelled data.
+3. Train a new HMM model on the merged data. 
+4. Repeat Step 1 (for the now pseudo-labelled data) to 3 for a total of t iterations.
