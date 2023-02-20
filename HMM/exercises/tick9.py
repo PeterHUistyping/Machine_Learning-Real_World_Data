@@ -198,6 +198,11 @@ def visualize_scores(score_list: List[Dict[str, float]]) -> None:
     clean_plot()
     chart_plot(f1_sc, "F1 score", "iteration", "F1_sc")
     clean_plot()
+    chart_plot(recall_sc, "all_score", "iteration", "score")
+
+    chart_plot(precision_sc, "all_score", "iteration", "score")
+    chart_plot(f1_sc, "all_score", "iteration", "score")
+    clean_plot()
 
 
 def main():

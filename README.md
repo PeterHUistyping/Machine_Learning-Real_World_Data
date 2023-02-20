@@ -115,3 +115,4 @@ Semi-Supervised Learning with Self-Training <br/>
 2. Merge the labelled data with the new pseudo-labelled data.
 3. Train a new HMM model on the merged data. 
 4. Repeat Step 1 (for the now pseudo-labelled data) to 3 for a total of t iterations.
+![Score Through iteration](HMM/figures/sentiment_detection/all_score.png)
