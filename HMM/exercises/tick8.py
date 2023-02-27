@@ -84,7 +84,7 @@ def precision_score(pred: List[List[int]], true: List[List[int]]) -> float:
 def recall_score(pred: List[List[int]], true: List[List[int]]) -> float:
     """
     Calculates the recall of the estimated sequence with respect to the positive class (weighted state), i.e. here the proportion of actual weighted states that were predicted weighted.
-
+Andreas Vlachos
     @param pred: List of binarized sequence predictions. 1 if positive (weighted), 0 if not to be considered.
     @param true:  List of gold binarized sequences. 1 if positive (weighted), 0 if not to be considered.
     @return: The recall of the estimated sequence with respect to the positive class(es) averaged over all the test sequences.

@@ -1,6 +1,6 @@
 import math
 
-from utils.markov_models import load_bio_data
+from utils.markov_models import load_bio_data, print_matrices
 import os
 import random
 from exercises.tick8 import recall_score, precision_score, f1_score, viterbi
@@ -8,7 +8,7 @@ from exercises.tick8 import recall_score, precision_score, f1_score, viterbi
 from typing import List, Dict, Tuple
 
 hidden_states = ['B', 'Z', 'i', 'o', 'M']
-observations = ['B,', 'Z', 'P', 'A', 'T', 'K', 'S', 'N', 'L', 'Q', 'M', 'G', 'Z', 'B', 'D', 'H', 'I', 'C', 'W', 'E',
+observations = [ 'P', 'A', 'T', 'K', 'S', 'N', 'L', 'Q', 'M', 'G', 'Z', 'B', 'D', 'H', 'I', 'C', 'W', 'E',
                 'R', 'V', 'Y', 'F']
 
 
@@ -123,7 +123,10 @@ def viterbi_bio(observed_sequence, transition_probs: Dict[Tuple[str, str], float
     observed_sequence = ['B'] + observed_sequence + ['Z']  # create the complete sequence
     memoization_table = [{} for _ in range(len(observed_sequence))]
     previous_best_table = [{} for _ in range(len(observed_sequence))]
-
+    # print(f"The transition probabilities of the HMM:")
+    # print_matrices(transition_probs)
+    # print(f"The emission probabilities of the HMM:")
+    # print_matrices(emission_probs)
     for si in hidden_states:
         calculate_delta(si, len(observed_sequence) - 1, transition_probs, emission_probs, observed_sequence,
                         memoization_table, previous_best_table)
