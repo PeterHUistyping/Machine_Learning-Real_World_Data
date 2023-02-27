@@ -116,3 +116,10 @@ Semi-Supervised Learning with Self-Training <br/>
 3. Train a new HMM model on the merged data. 
 4. Repeat Step 1 (for the now pseudo-labelled data) to 3 for a total of t iterations.
 ![Score Through iteration](HMM/figures/sentiment_detection/all_score.png)
+
+## Social Networks
+undirected and unweighted graph, Node, Link. <br/>
+e.g, Facebook-style networks, Twitter-style networks<br/>
+Visualize the network with Gephi<br/>
+Find the degree of each node.<br/>
+Determine the diameter of the network using a breadth-first all-pairs shortest path (APSP) algorithm.
