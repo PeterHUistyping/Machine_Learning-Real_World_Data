@@ -1,4 +1,3 @@
-import glob
 import os
 from typing import Dict, Set
 
@@ -77,25 +76,7 @@ def get_diameter(graph: Dict[int, Set[int]]) -> int:
     key = list(graph)
     len_key = len(key)
 
-    Shortest_paths = [-1] * (len_key+2)
-
-    # for s in range(0, len_key):
-    #     Flag = [False for i in range(len_key)]
-    #     q = []
-    #     Flag[s] = True
-    #     q.append(s)
-    #     Shortest_paths[s][s] = 0
-    #     while q:
-    #         v = q.pop(0)
-    #         if v in graph:
-    #             for neighbour in graph[v]:
-    #                 if not Flag[neighbour]:
-    #                     Flag[neighbour] = True
-    #                     Shortest_paths[s][neighbour] = Shortest_paths[s][v] + 1
-    #                     print(Shortest_paths[s][neighbour],s,neighbour)
-    #                     diameter = max(diameter, Shortest_paths[s][neighbour])
-    #                     q.append(neighbour)
-    # return diameter
+    Shortest_paths = [-1] * (len_key + 2)
     for s in range(0, len_key):
         Flag = [False for i in range(len_key+2)]
         q = []
@@ -115,6 +96,24 @@ def get_diameter(graph: Dict[int, Set[int]]) -> int:
                         q.append(neighbour)
     return diameter
 
+
+    # for s in range(0, len_key):
+    #     Flag = [False for i in range(len_key)]
+    #     q = []
+    #     Flag[s] = True
+    #     q.append(s)
+    #     Shortest_paths[s][s] = 0
+    #     while q:
+    #         v = q.pop(0)
+    #         if v in graph:
+    #             for neighbour in graph[v]:
+    #                 if not Flag[neighbour]:
+    #                     Flag[neighbour] = True
+    #                     Shortest_paths[s][neighbour] = Shortest_paths[s][v] + 1
+    #                     print(Shortest_paths[s][neighbour],s,neighbour)
+    #                     diameter = max(diameter, Shortest_paths[s][neighbour])
+    #                     q.append(neighbour)
+    # return diameter
 
 def main():
     graph = load_graph(os.path.join('data', 'social_networks', 'simple_network.edges'))

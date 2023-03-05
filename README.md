@@ -123,3 +123,6 @@ e.g, Facebook-style networks, Twitter-style networks<br/>
 Visualize the network with Gephi<br/>
 Find the degree of each node.<br/>
 Determine the diameter of the network using a breadth-first all-pairs shortest path (APSP) algorithm.
+
+Calculate betweenness centrality using Brandes algorithm: 
+networkx.centrality
