@@ -118,7 +118,7 @@ Semi-Supervised Learning with Self-Training <br/>
 ![Score Through iteration](HMM/figures/sentiment_detection/all_score.png)
 
 ## Social Networks
-undirected and unweighted graph, Node, Link. <br/>
+Undirected and unweighted graph, Node, Link. <br/>
 e.g, Facebook-style networks, Twitter-style networks<br/>
 Visualize the network with Gephi<br/>
 Find the degree of each node.<br/>
@@ -126,3 +126,5 @@ Determine the diameter of the network using a breadth-first all-pairs shortest p
 
 Calculate betweenness centrality using Brandes algorithm: 
 networkx.centrality
+## Clustering
+Girvan-Newman algorithm on facebook_circle.edges
