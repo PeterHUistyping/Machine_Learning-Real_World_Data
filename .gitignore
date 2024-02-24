@@ -1,8 +1,3 @@
-Doc/1/.DS_Store
+.DS_Store
 mlrd/data/sentiment_detection/reviews_large
 mlrd/data/sentiment_detection/reviews_nuanced
-mlrd/exercises/.DS_Store
-mlrd/.DS_Store
-.DS_Store
-Doc/.DS_Store
-Doc/3/.DS_Store
